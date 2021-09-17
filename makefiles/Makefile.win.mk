@@ -84,7 +84,7 @@ WHICH = tools\win\which.exe
 # cf https://www.gnu.org/software/make/manual/html_node/Choosing-the-Shell.html
 SHCHECK := $(shell where sh.exe 2>NUL)
 ifneq ($(SHCHECK),)
-$(error Please remove sh.exe ($(SHCHECK)) from your PATH (e.g. set PATH=%PATH:C:\Program Files\Git\bin\;=%))
+$(warning Please remove sh.exe ($(SHCHECK)) from your PATH (e.g. set PATH=%PATH:C:\Program Files\Git\bin\;=%))
 else
 SHELL = cmd
 endif
