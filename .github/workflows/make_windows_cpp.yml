@@ -9,14 +9,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check make
-      run: make --version
+      run: tools\make --version
     - name: Check system
-      run: make detect_port
+      run: tools\make detect_port
     - name: Build third party
-      run: make third_party -j4
+      run: tools\make third_party -j4
     - name: Build C++
-      run: make cc -j4
+      run: tools\make cc -j4
     - name: Test
-      run: make test_cc
+      run: tools\make test_cc
     - name: Install
-      run: make install_cc DESTDIR=install
+      run: tools\make install_cc DESTDIR=install
