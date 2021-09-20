@@ -9,9 +9,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ilammy/msvc-dev-cmd@v1
-    - name: Add msbuild to PATH
-      # see https://github.com/microsoft/setup-msbuild
-      uses: microsoft/setup-msbuild@v1.0.3
     - name: Clean sh.exe
       run: |
         where sh
@@ -29,4 +26,4 @@ jobs:
     - name: Test C++
       run: tools\make test_cc
     - name: Install
-      run: tools\make install_cc DESTDIR=install
+      run: tools\make install_cc
