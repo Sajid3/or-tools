@@ -11,6 +11,11 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - name: Add msbuild to PATH
+      # see https://github.com/microsoft/setup-msbuild
+      uses: microsoft/setup-msbuild@v1.0.3
+    - name: Where sh
+      run: where sh
     - name: Check make
       run: tools/make --version
     - name: remove sh.exe

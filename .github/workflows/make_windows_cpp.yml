@@ -8,17 +8,19 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Add msbuild to PATH
+      # see https://github.com/microsoft/setup-msbuild
+      uses: microsoft/setup-msbuild@v1.0.3
+    - name: Where sh
+      run: where sh
+      shell: bash
+    - name: remove sh.exe
+      run: |
+        rm 'C:\Program Files\Git\usr\bin\sh.exe'
+        rm 'C:\Program Files\Git\bin\sh.exe'
+      shell: bash
     - name: Check make
       run: tools\make --version
-    - name: old PATH
-      run: echo "$PATH"
-      shell: bash
-    - name: remove Git\usr\bin\sh.exe
-      run: rm 'C:\Program Files\Git\usr\bin\sh.exe'
-      shell: bash
-    - name: remove Git\bin\sh.exe
-      run: rm 'C:\Program Files\Git\bin\sh.exe'
-      shell: bash
     - name: Check system
       run: tools\make detect_port
     - name: Build third party

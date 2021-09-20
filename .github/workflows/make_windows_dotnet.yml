@@ -11,12 +11,17 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
-    - name: Check make
-      run: tools/make --version
+    - name: Add msbuild to PATH
+      # see https://github.com/microsoft/setup-msbuild
+      uses: microsoft/setup-msbuild@v1.0.3
+    - name: Where sh
+      run: where sh
     - name: remove sh.exe
       run: |
         rm 'C:\Program Files\Git\usr\bin\sh.exe'
         rm 'C:\Program Files\Git\bin\sh.exe'
+    - name: Check make
+      run: tools/make --version
     - name: Check system
       run: tools/make detect_port
     - name: Check dotnet
