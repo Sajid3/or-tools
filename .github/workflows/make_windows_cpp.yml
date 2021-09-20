@@ -8,6 +8,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: ilammy/msvc-dev-cmd@v1
     - name: Add msbuild to PATH
       # see https://github.com/microsoft/setup-msbuild
       uses: microsoft/setup-msbuild@v1.0.3
@@ -23,6 +24,8 @@ jobs:
       run: tools\make --version
     - name: Check system
       run: tools\make detect_port
+    - name: Install NMake
+      run: choco install --verbose nmake
     - name: Build third party
       run: tools\make third_party -j4
     - name: Build C++
