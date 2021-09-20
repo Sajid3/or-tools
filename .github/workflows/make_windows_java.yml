@@ -11,17 +11,17 @@ jobs:
         shell: bash
     steps:
     - uses: actions/checkout@v2
+    - uses: ilammy/msvc-dev-cmd@v1
     - name: Add msbuild to PATH
       # see https://github.com/microsoft/setup-msbuild
       uses: microsoft/setup-msbuild@v1.0.3
-    - name: Where sh
-      run: where sh
-    - name: Check make
-      run: tools/make --version
-    - name: remove sh.exe
+    - name: Clean sh.exe
       run: |
+        where sh
         rm 'C:\Program Files\Git\usr\bin\sh.exe'
         rm 'C:\Program Files\Git\bin\sh.exe'
+    - name: Check make
+      run: tools/make --version
     - name: Check system
       run: tools/make detect_port
     - name: Check java

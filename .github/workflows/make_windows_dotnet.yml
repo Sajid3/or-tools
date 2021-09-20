@@ -15,18 +15,17 @@ jobs:
     - name: Add msbuild to PATH
       # see https://github.com/microsoft/setup-msbuild
       uses: microsoft/setup-msbuild@v1.0.3
-    - name: Where sh
-      run: where sh
-    - name: remove sh.exe
+    - name: Clean sh.exe
       run: |
+        where sh
         rm 'C:\Program Files\Git\usr\bin\sh.exe'
         rm 'C:\Program Files\Git\bin\sh.exe'
+    - name: Check dotnet
+      run: dotnet --info
     - name: Check make
       run: tools/make --version
     - name: Check system
       run: tools/make detect_port
-    - name: Check dotnet
-      run: dotnet --info
     - name: Build third party
       run: tools/make third_party -j4
     - name: Build C++
