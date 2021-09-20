@@ -6,6 +6,7 @@ jobs:
   # Building using the github runner environement directly.
   make:
     runs-on: windows-latest
+    shell: bash
     steps:
     - uses: actions/checkout@v2
     - name: Check make
