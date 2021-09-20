@@ -9,9 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check make
-      run: tools\make --version
+      run: make --version
+    - name: where sh
+      run: where sh.exe
     - name: Check system
-      run: tools\make detect_port
+      run: make detect_port
     - name: Check dotnet
       run: dotnet --info
     - name: Build third party

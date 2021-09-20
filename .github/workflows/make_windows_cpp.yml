@@ -15,11 +15,8 @@ jobs:
       shell: bash
     - name: Remove sh.exe from PATH
       run: |
-        echo "$PATH"
-        set PATH=%PATH:C:\Program Files\Git\bin;=%
-        set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
-        echo "$PATH" > $GITHUB_PATH
-      shell: bash
+        set GITHUB_PATH -= C:\Program Files\Git\bin
+        set GITHUB_PATH -= C:\Program Files\Git\usr\bin
     - name: new PATH
       run: echo "$PATH"
       shell: bash
