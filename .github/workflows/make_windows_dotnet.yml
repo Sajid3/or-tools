@@ -15,8 +15,12 @@ jobs:
       run: tools/make --version
     - name: where sh
       run: where sh
-    - name: which sh
-      run: which sh
+    - name: remove Git\usr\bin\sh.exe
+      run: rm 'C:\Program Files\Git\usr\bin\sh.exe'
+    - name: remove Git\bin\sh.exe
+      run: rm 'C:\Program Files\Git\bin\sh.exe'
+    - name: where sh
+      run: where sh
     - name: Check system
       run: tools/make detect_port
     - name: Check dotnet
