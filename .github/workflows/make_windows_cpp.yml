@@ -26,7 +26,7 @@ jobs:
       run: tools\make third_party -j4
     - name: Build C++
       run: tools\make cc -j4
-    - name: Test
+    - name: Test C++
       run: tools\make test_cc
     - name: Install
       run: tools\make install_cc DESTDIR=install
