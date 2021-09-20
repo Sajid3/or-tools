@@ -15,10 +15,13 @@ jobs:
       shell: bash
     - name: Remove sh.exe from PATH
       run: |
-        set GITHUB_PATH -= "/c/Program Files/Git/bin"
-        set GITHUB_PATH -= "/c/Program Files/Git/usr/bin"
-        set GITHUB_PATH -= "C:/Program Files/Git/bin"
-        set GITHUB_PATH -= "C:/Program Files/Git/usr/bin"
+        $Environment = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+        foreach ($path in ($Environment).Split(";")) {
+          if ($path -like "*\Git\bin*") {
+            $Environment = $Environment.Replace($Path ,"")
+          }
+        }
+        [System.Environment]::SetEnvironmentVariable("GITHUB_PATH", $Environment, "Machine")
     - name: new PATH
       run: echo "$PATH"
       shell: bash

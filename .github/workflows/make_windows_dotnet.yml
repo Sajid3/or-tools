@@ -6,15 +6,19 @@ jobs:
   # Building using the github runner environement directly.
   make:
     runs-on: windows-latest
-    shell: bash
+    defaults:
+      run:
+        shell: bash
     steps:
     - uses: actions/checkout@v2
     - name: Check make
-      run: make --version
+      run: tools/make --version
     - name: where sh
-      run: where sh.exe
+      run: where sh
+    - name: which sh
+      run: which sh
     - name: Check system
-      run: make detect_port
+      run: tools/make detect_port
     - name: Check dotnet
       run: dotnet --info
     - name: Build third party
