@@ -13,17 +13,11 @@ jobs:
     - name: old PATH
       run: echo "$PATH"
       shell: bash
-    - name: Remove sh.exe from PATH
-      run: |
-        $Environment = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
-        foreach ($path in ($Environment).Split(";")) {
-          if ($path -like "*\Git\bin*") {
-            $Environment = $Environment.Replace($Path ,"")
-          }
-        }
-        [System.Environment]::SetEnvironmentVariable("GITHUB_PATH", $Environment, "Machine")
-    - name: new PATH
-      run: echo "$PATH"
+    - name: remove Git\usr\bin\sh.exe
+      run: rm 'C:\Program Files\Git\usr\bin\sh.exe'
+      shell: bash
+    - name: remove Git\bin\sh.exe
+      run: rm 'C:\Program Files\Git\bin\sh.exe'
       shell: bash
     - name: Check system
       run: tools\make detect_port
